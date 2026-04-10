@@ -15,6 +15,22 @@ marker.bindPopup(`
   </div>
 `);
 
+document.getElementById("locBtn").onclick = () => {
+  navigator.geolocation.getCurrentPosition(pos => {
+    const { latitude, longitude } = pos.coords;
+
+    reports.push({
+      lat: latitude,
+      lng: longitude,
+      severity: "Medium",
+      status: "Reported"
+    });
+
+    map.setView([latitude, longitude], 15);
+    renderReports();
+  });
+};
+
 map.on('click', function(e) {
   if (!addMode) return;
 
