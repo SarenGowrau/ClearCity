@@ -5,6 +5,16 @@ document.getElementById("addBtn").onclick = () => {
   alert("Click on map to add report");
 };
 
+marker.bindPopup(`
+  <div style="text-align:center">
+    <h4>Garbage Spot</h4>
+    <p>Severity: ${report.severity}</p>
+    <p>Status: ${report.status}</p>
+    <button onclick="claimReport(${index})">Claim</button>
+    <button onclick="markCleaned(${index})">Cleaned</button>
+  </div>
+`);
+
 map.on('click', function(e) {
   if (!addMode) return;
 
